@@ -1794,7 +1794,9 @@ static int restore_handler(const struct sockaddr_nl *nl,
 
 	ll_init_map(&rth);
 
+	print_route(nl, n, stdout);
 	ret = rtnl_talk(&rth, n, n, sizeof(*n));
+	fprintf(stdout, "returned %d\n", ret);
 	if ((ret < 0) && (errno == EEXIST))
 		ret = 0;
 
